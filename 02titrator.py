@@ -22,7 +22,7 @@ def send_command(command):
 
 # Function to start dosing
 def start_dosing():
-    send_command('$G')  # Start command
+    send_command('$G CR LF')  # Start command
 
 
 # Function to stop dosing

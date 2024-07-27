@@ -4,7 +4,7 @@ import csv
 
 # Set up the serial connection (adjust COM port as needed)
 ser = serial.Serial(
-    port='COM2',  # Replace with your actual COM port
+    port='COM1',  # Replace with your actual COM port
     baudrate=19200,
     bytesize=serial.EIGHTBITS,
     stopbits=serial.STOPBITS_ONE,
