@@ -4,12 +4,30 @@ import csv
 import sys
 from serial import Serial
 
+# Set up the serial connection for the titrator
+titrator_ser = serial.Serial(
+    port='COM5',
+    baudrate=19200,
+    bytesize=serial.EIGHTBITS,
+    stopbits=serial.STOPBITS_ONE,
+    parity=serial.PARITY_NONE,
+    timeout=1
+)
+
 # Set up the serial connection for the Arduino
 arduino_ser = serial.Serial(
     port='COM4',
     baudrate=9600,
     timeout=1
 )
+
+
+# Function to send a command and read the response from the titrator
+def send_titrator_command(command):
+    titrator_ser.write((command + '\r\n').encode())
+    time.sleep(0.1)
+    response = titrator_ser.read(titrator_ser.in_waiting).decode().strip()
+    return response
 
 # Function to add progress bar in dispensing of sample
 def printProgressBar(iteration, total, prefix='', suffix='', length=50):
@@ -34,6 +52,14 @@ def send_arduino_command(command):
     response = arduino_ser.read(arduino_ser.in_waiting).decode().strip()
     return response
 
+# Initialize the titrator and prepare it for dosing
+send_titrator_command('$L(DOS)')  # Load the dosing method
+send_titrator_command('$G')  # Start the method
+
+# Prepare to log data
+log_file = 'titrator_log.csv'
+fields = ['Time', 'Acid Volume Dosed (ml)', 'Acid Concentration (M)', 'Sample Volume (ml)']
+data = []
 
 #User defined inputs
 acid_concentration = input("Acid concentration (mol/L): ")  # Molarity of the acid
@@ -51,4 +77,43 @@ for i in range(int(dispense_amnt) + 1):
 
 print("\nReady to begin titration")  # Indicate completion after the loop
 
+
+
+try:
+    while True:
+
+
+        # Trigger a dosing step
+        send_titrator_command('$G')
+
+        # Get the dosed volume
+        dosed_volume = send_titrator_command('$Q(VOLUME)')
+
+        # Record the data
+        timestamp = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+        data.append([timestamp, dosed_volume, acid_concentration, sample_volume])
+
+        # Log the data to a CSV file
+        with open(log_file, mode='w', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow(fields)
+            writer.writerows(data)
+
+        print(f"Dosed {dosed_volume} ml of acid at {timestamp}")
+
+        # Wait before the next dose (adjust as needed for your application)
+        time.sleep(60)
+
+        flush = input("Flush sample from cell? (yes/no)")
+        if flush() == "yes":
+            send_arduino_command('D, ' + dispense_amnt)
+        elif flush() == "no":
+            print("Standing by...")
+        else:
+            print("Type 'yes' or 'no'")
+
+
+finally:
+    titrator_ser.close()
+    arduino_ser.close()
 
