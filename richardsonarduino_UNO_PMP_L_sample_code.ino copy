@@ -1,0 +1,68 @@
+#include <SoftwareSerial.h>
+
+#define RX_PIN 2                                        // Define the pin for RX
+#define TX_PIN 3                                        // Define the pin for TX
+#define PUMP_PWM_PIN 9                                  // Define the pin for PWM control of the pump
+
+SoftwareSerial pumpSerial(RX_PIN, TX_PIN);              // Initialize SoftwareSerial for the pump
+
+String inputString = "";                                // String to hold incoming data from the PC
+String pumpResponse = "";                               // String to hold the data from the pump
+boolean isInputStringComplete = false;                  // Flag for completed input string from PC
+boolean isPumpResponseComplete = false;                 // Flag for completed response from the pump
+float volume;                                           // Variable to hold the volume in ml
+int maxFlowRate = 255;                                  // Maximum flow rate (0 to 255, where 255 is full speed)
+
+void setup() {
+  Serial.begin(9600);                                   // Set baud rate for Serial monitor
+  pumpSerial.begin(9600);                               // Set baud rate for SoftwareSerial
+  inputString.reserve(10);                              // Reserve memory for input string
+  pumpResponse.reserve(30);                             // Reserve memory for pump response
+  
+  pinMode(PUMP_PWM_PIN, OUTPUT);                        // Set the pump PWM pin as output
+}
+
+void serialEvent() {
+  inputString = Serial.readStringUntil('\r');           // Read the string until a carriage return is received
+  isInputStringComplete = true;                         // Set the flag indicating the input string is complete
+}
+
+void loop() {
+  if (isInputStringComplete) {                          // If a complete input string is received
+    if (inputString.startsWith("F")) {                  // Check if the input string is a flow rate command (e.g., "F128")
+      int newFlowRate = inputString.substring(1).toInt(); // Extract the flow rate value from the input
+      if (newFlowRate >= 0 && newFlowRate <= 255) {
+        maxFlowRate = newFlowRate;                      // Update the max flow rate
+        analogWrite(PUMP_PWM_PIN, maxFlowRate);         // Set the PWM signal based on the new flow rate
+        Serial.println("Flow rate set to: " + String(maxFlowRate));
+      }
+    } else {
+      pumpSerial.print(inputString);                    // Send the string to the pump
+      pumpSerial.print('\r');                           // Append a carriage return
+    }
+    inputString = "";                                   // Clear the input string
+    isInputStringComplete = false;                      // Reset the input string complete flag
+  }
+
+  while (pumpSerial.available() > 0) {                  // If there's data available from the pump
+    char receivedChar = (char)pumpSerial.read();        // Read the incoming character
+    pumpResponse += receivedChar;                       // Append it to the pump response string
+    if (receivedChar == '\r') {                         // If the received character is a carriage return
+      isPumpResponseComplete = true;                    // Set the flag indicating the response is complete
+    }
+  }
+
+  if (isPumpResponseComplete) {                         // If a complete response is received
+    Serial.println(pumpResponse);                       // Send the response to the Serial monitor
+    if (isDigitOrMinus(pumpResponse[0])) {              // Check if the first character is a digit or '-'
+      volume = pumpResponse.toFloat();                  // Convert the response to a floating point number
+      // Add any processing needed for 'volume' here
+    }
+    pumpResponse = "";                                  // Clear the pump response string
+    isPumpResponseComplete = false;                     // Reset the pump response complete flag
+  }
+}
+
+bool isDigitOrMinus(char c) {
+  return isdigit(c) || c == '-';                        // Helper function to check if character is digit or '-'
+}
