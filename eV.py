@@ -3,7 +3,7 @@ import pandas as pd
 
 # Set the working directory
 
-dir = os.chdir('/Users/cameronrichardson/Documents/School/Thesis/Code/titrations/')
+dir = os.chdir('/Users/cameronrichardson/Documents/School/Thesis/Code/data')
 
 files_in_dir = os.listdir()
 print("Files in directory:", files_in_dir, "\n")
@@ -50,7 +50,7 @@ while True:
         cumulative_volume += volume_increment
 
         # Prepare the new entry as a string with the desired format
-        entry_str = f" {entry_counter}, {cumulative_volume:}.3f, {mv:}\n"
+        entry_str = f" {entry_counter}, {cumulative_volume:}, {mv:}\n"
 
         # Append the new entry to the file
         with open(file_name, 'a') as file:
