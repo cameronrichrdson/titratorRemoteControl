@@ -75,6 +75,19 @@ combined_pK2 = -np.log10(np.exp(-0.84226 + -3741.1288/T_kelvin + -1.437139*np.lo
 
 #######
 
+########################################## Dickson and Millero 1989, Hansson and Mehrbach combined refit on pH(SWS) ####################################################
+
+
+########## ONLY FOR SALINITY RANGE OF 20 <= S <= 40
+combined_pK1_DM = 845/T_kelvin +3.248-0.0098*S+0.000087**S
+combined_pK2_DM = 1377.3/T_kelvin+4.824-0.0185*S+0.000122**S
+
+
+
+#######
+
+
+
 
 print("~~~~~~~~~~~~~~~~~~~~~~~~~", "\n", "T (C) = ", T_celsius, "\n", "S (g/kg)= ", S, "\n","~~~~~~~~~~~~~~~~~~~~~~~~~")
 print(" Using Roy1993 formulation (asw):")
@@ -91,3 +104,5 @@ print(" Using Lueker 2000 formulation (sw):")
 print(" pK1 = ", lueker_pK1, "\n", "pK2 = ", lueker_pK2, "\n")
 print(" Millero 1995, Roy 1993 and GP 1989 combined (asw):")
 print(" pK1 = ", combined_pK1, "\n", "pK2 = ", combined_pK2, "\n")
+print(" Dickson and Millero 1989, Hansson and Mehrbach combined refit on pH(SWS):")
+print(" pK1 = ", combined_pK1_DM, "\n", "pK2 = ", combined_pK2_DM, "\n")
