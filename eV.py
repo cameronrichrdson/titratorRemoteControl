@@ -30,7 +30,7 @@ with open(file_name, 'w') as file:
 
     # Write the initial data with leading space
     for index, row in initial_row.iterrows():
-        file.write(f" {row['Acid m (mol/kg)']:.1f}, {row['Cell W (g)']:}, {row['Cell T (oC)']:.3f}\n")
+        file.write(f" {row['Acid m (mol/kg)']}, {row['Cell W (g)']}, {row['Cell T (oC)']:.3f}\n")
 
     # Write the salinity line without leading space
     file.write("Salinity = 35.000\n")
@@ -50,7 +50,7 @@ while True:
         cumulative_volume += volume_increment
 
         # Prepare the new entry as a string with the desired format
-        entry_str = f" {entry_counter}, {cumulative_volume:}, {mv:}\n"
+        entry_str = f" {entry_counter}, {cumulative_volume}, {mv}\n"
 
         # Append the new entry to the file
         with open(file_name, 'a') as file:

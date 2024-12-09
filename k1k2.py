@@ -1,30 +1,29 @@
 import numpy as np
 
 # Given values
-T_celsius = 19
+T_celsius = 20
 # S = 35.050462
 S = 34.8
 T_kelvin = T_celsius + 273.15
 
 
-############################# Roy1993 ######################
+############################# Roy1993 on sw scale######################
 # Components of the equation
-ln_T = np.log(T_kelvin)
 S_sqrt = np.sqrt(S)
 S_15 = S * S_sqrt
 
-roy_pK1 = -np.log10(np.exp((2.83655 - (2307.1266 / T_kelvin) - 1.552941 * ln_T +
-         (-0.20760841 - (4.0484 / T_kelvin)) * S_sqrt +
-         0.08468345 * S - 0.00654208 * S_15)))
+roy_pK1 = -np.log10(np.exp((3.17537 - (2329.1378 / T_kelvin) - 1.597015 * np.log(T_kelvin) +
+         (-0.210502 - (5.79495 / T_kelvin)) * S_sqrt +
+         0.0872208 * S - 0.00684651 * S_15)))
 
-roy_pK2 = -np.log10(np.exp((-9.226508 - (3351.6106 / T_kelvin) - 0.200574 * ln_T +
-         (-0.106901773 - (23.9722 / T_kelvin)) * S_sqrt +
-         0.1130822 * S - 0.00846934 * S_15)))
+roy_pK2 = -np.log10(np.exp((-8.19754 - (3403.8782 / T_kelvin) - 0.352253 * np.log(T_kelvin) +
+         (-0.088885 - (25.95316 / T_kelvin)) * S_sqrt +
+         0.1106658 * S - 0.00840155 * S_15)))
 
-############################ Goyet and Poisson 1989########################
+############################ Goyet and Poisson 1989 on sw scale ########################
 
-GP_pK1 = 812.27 / T_kelvin + 3.356 - 0.00171 * S * np.log(T_kelvin) + 0.000091 * S ** 2
-GP_pK2 = 1450.87 / T_kelvin + 4.604 - 0.00385 * S * np.log(T_kelvin) + 0.000182 * S**2
+GP_pK1 = 807.18 / T_kelvin + 3.374 - 0.00175 * S * np.log(T_kelvin) + 0.000095 * S ** 2
+GP_pK2 = 1486.6 / T_kelvin + 4.491 - 0.00412 * S * np.log(T_kelvin) + 0.000215 * S ** 2
 
 ############################## Millero 2006 #########################
 
@@ -43,31 +42,26 @@ C2 = -3.3336 * np.sqrt(S)
 pK2_0 = -90.18333 + 5143.692 / T_kelvin + 14.613358 * np.log(T_kelvin)
 millero_pK2 = A2 +(B2/T_kelvin) + C2*np.log(T_kelvin) + pK2_0
 
-############################## Mehrbach 1973 ###########################
-#for t= 19, s= 35
-mehr_pK1 = 6.03245202378
-mhr_pK2 = 9.1951793213
-
 
 ########################################## Mojica and Millero 2002 ####################################################
 
 
-mojica_pK1 = -43.6977 - 0.0129037*S + 1.364e-4**S + 2885.378/T_kelvin + 7.045159*np.log(T_kelvin)
+mojica_pK1 = -43.6977 - 0.0129037*S + 1.364e-4*(S**2) + 2885.378/T_kelvin + 7.045159*np.log(T_kelvin)
 
-mojica_pK2 = -452.0940 + 13.142162*S - 8.101e-4**S + 21263.61/T_kelvin + 68.483143*np.log(T_kelvin) + (-581.4428*S + 0.259601**S)/T_kelvin - (1.967035*S)*np.log(T_kelvin)
+mojica_pK2 = -452.0940 + 13.142162*S - 8.101e-4*(S**2) + 21263.61/T_kelvin + 68.483143*np.log(T_kelvin) + (-581.4428*S + 0.259601*(S**2))/T_kelvin - (1.967035*S)*np.log(T_kelvin)
 
 
 
 #################################### Lueker 2000 ########################################################################
-lueker_pK1 = 3633.86/T_kelvin - 61.2172 + 9.67770*np.log(T_kelvin) - 0.011555*S +0.0001152**S
-lueker_pK2 = 471.78/T_kelvin +25.9290-3.16967*np.log(T_kelvin) -0.01781*S + 0.0001122**S
+lueker_pK1 = 3633.86/T_kelvin - 61.2172 + 9.67770*np.log(T_kelvin) - 0.011555*S +0.0001152*(S**2)
+lueker_pK2 = 471.78/T_kelvin +25.9290-3.16967*np.log(T_kelvin) -0.01781*S + 0.0001122*(S**2)
 
 
 #######
 
 
 
-########################################## Millero 1995, Roy 1993 and GP 1989 combined ####################################################
+########################################## Millero 1995, Roy 1993 and GP 1989 combined (sw scale)####################################################
 
 
 combined_pK1 = -np.log10(np.exp(2.18867-2275.0360/T_kelvin - 1.468591*np.log(T_kelvin) + (-0.138681-9.33291/T_kelvin)*(np.sqrt(S)) +0.0726483*S - 0.00574938*S**1.5))
@@ -79,8 +73,8 @@ combined_pK2 = -np.log10(np.exp(-0.84226 + -3741.1288/T_kelvin + -1.437139*np.lo
 
 
 ########## ONLY FOR SALINITY RANGE OF 20 <= S <= 40
-combined_pK1_DM = 845/T_kelvin +3.248-0.0098*S+0.000087**S
-combined_pK2_DM = 1377.3/T_kelvin+4.824-0.0185*S+0.000122**S
+combined_pK1_DM = (845/T_kelvin)+3.248-0.0098*S+0.000087*(S**2)
+combined_pK2_DM = (1377.3/T_kelvin)+4.824-0.0185*S+0.000122*(S**2)
 
 
 
@@ -96,8 +90,6 @@ print(" Using Goyet & Poisson 1989 formulation (asw):")
 print(" pK1 = ", GP_pK1, "\n", "pK2 = ", GP_pK2, "\n")
 print(" Using Millero 2006 formulation :")
 print(" pK1 = ", millero_pK1, "\n", "pK2 = ", millero_pK2, "\n")
-print(" Using Mehrbach 1973 formulation (sw):")
-print(" pK1 = ", mehr_pK1, "\n", "pK2 = ", mhr_pK2, "\n")
 print(" Using Mojica & Millero 2002 formulation (sw):")
 print(" pK1 = ", mojica_pK1, "\n", "pK2 = ", mojica_pK2, "\n")
 print(" Using Lueker 2000 formulation (sw):")
