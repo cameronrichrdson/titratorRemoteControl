@@ -41,7 +41,7 @@ def start_dosing(ser):
 
 
 # Setup the serial connection
-ser = setup_serial_connection()
+#ser = setup_serial_connection()
 
 # Start dosing
-start_dosing(ser)
+#start_dosing(ser)
