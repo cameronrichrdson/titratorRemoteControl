@@ -9,7 +9,7 @@
 /dataSources.local.xml
 #labview files
 *.ino
-*png
+*.png
 *.pyc
 *.html
 *.lvlps
