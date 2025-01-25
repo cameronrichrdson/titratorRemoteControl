@@ -12,13 +12,7 @@ def delta(data):
             diff = last10[i] - last10[i-1]
             thresholdMet.append(abs(diff)<=0.05)
     if all(thresholdMet):
-        print(1)
-        print()
-        print()
-        return(0)
+        return 1
     else:
         return 0 
     
-
-data = [0.1, 0.1,0.1,0.1,0.1,0.1,0.1,0.1, 0.1,0.1]
-print(delta(data))    # Output: 1

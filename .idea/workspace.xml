@@ -5,37 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d4c3303f-0739-450d-a598-9e394502e31d" name="Changes" comment="attempting connection test before executing code. Python/arduino connection to pump works.">
-      <change afterPath="$PROJECT_DIR$/dosimat.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sum.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/titratorSerial/01_dosing.vi" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/titratorSerial/02_dosing.vi" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/titratorSerial/03_dosing.vi" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/titratorSerial/Main.vi" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/titratorSerial/controls/Data.ctl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/titratorSerial/controls/State.ctl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/titratorSerial/documentation/Simple State Machine Documentation.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/titratorSerial/documentation/loc_conditional_state_transition.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/titratorSerial/documentation/loc_new_button.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/titratorSerial/documentation/loc_new_button_transition.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/titratorSerial/documentation/loc_new_button_value_change.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/titratorSerial/documentation/loc_new_state.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/titratorSerial/documentation/loc_open_data_typedef.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/titratorSerial/documentation/loc_open_states_typedef.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/titratorSerial/documentation/loc_simple_state_machine.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/titratorSerial/documentation/loc_state_transition.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/titratorSerial/documentation/loc_transition_error.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/titratorSerial/documentation/loc_use_state_data.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/titratorSerial/python Nodes/sum.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/titratorSerial/pythonVI.vi" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/titratorSerial/sum.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/titratorSerial/titratorSerial.aliases" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/titratorSerial/titratorSerial.lvlps" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/titratorSerial/titratorSerial.lvproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/titratorSerial/try.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/titration serial control.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/titration serial control.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/richardsonarduino_UNO_PMP_L_variableflowrate.ino" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/serialConnect.py" beforeDir="false" afterPath="$PROJECT_DIR$/serialConnect.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/titratorSerial/resetpythonVI.vi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/titratorSerial/sumpythonVI.vi" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/titratorSerial/05_dosing.vi" beforeDir="false" afterPath="$PROJECT_DIR$/titratorSerial/05_dosing.vi" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/titratorSerial/09_sum.py" beforeDir="false" afterPath="$PROJECT_DIR$/titratorSerial/09_sum.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/titratorSerial/pythonVI.vi" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/titratorSerial/sum.py" beforeDir="false" afterPath="$PROJECT_DIR$/titratorSerial/sum.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/titratorSerial/sumNEW.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
