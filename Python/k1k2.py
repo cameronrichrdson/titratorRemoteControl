@@ -1,9 +1,9 @@
 import numpy as np
+import pandas as pd
 
 # Given values
 T_celsius = 20
-# S = 35.050462
-S = 34.8
+S = 35
 T_kelvin = T_celsius + 273.15
 
 
@@ -77,10 +77,12 @@ combined_pK1_DM = (845/T_kelvin)+3.248-0.0098*S+0.000087*(S**2)
 combined_pK2_DM = (1377.3/T_kelvin)+4.824-0.0185*S+0.000122*(S**2)
 
 
-
-#######
-
-
+####################################################################################millero roy 1997
+a_millero = -60.2409
+b_millero = -9345.17
+c_millero = 18.7533
+ 
+k_millero197 = np.exp(a_millero + b_millero/T_kelvin + c_millero*np.log(T_kelvin))
 
 
 print("~~~~~~~~~~~~~~~~~~~~~~~~~", "\n", "T (C) = ", T_celsius, "\n", "S (g/kg)= ", S, "\n","~~~~~~~~~~~~~~~~~~~~~~~~~")
@@ -98,3 +100,17 @@ print(" Millero 1995, Roy 1993 and GP 1989 combined (asw):")
 print(" pK1 = ", combined_pK1, "\n", "pK2 = ", combined_pK2, "\n")
 print(" Dickson and Millero 1989, Hansson and Mehrbach combined refit on pH(SWS):")
 print(" pK1 = ", combined_pK1_DM, "\n", "pK2 = ", combined_pK2_DM, "\n")
+print(" Millero 1997:", k_millero197)
+
+
+# data = {
+#     "Formulation": ["Roy1993", "Goyet & Poisson 1989", "Millero 2006", "Mojica & Millero 2002", "Lueker 2000", "Millero 1995, Roy 1993 and GP 1989 combined", "Dickson and Millero 1989, Hansson and Mehrbach combined refit"],
+#     "Author": ["ROY93", "GP89", "MILL06", "MM02", "LUEK00", "MRG95", "DM89"],
+#     "pK1": [roy_pK1, GP_pK1, millero_pK1, mojica_pK1, lueker_pK1, combined_pK1, combined_pK1_DM],
+#     "pK2": [roy_pK2, GP_pK2, millero_pK2, mojica_pK2, lueker_pK2, combined_pK2, combined_pK2_DM]
+# }
+
+# df = pd.DataFrame(data)
+# filename = f"S{S}_T{T_celsius}_pKvalues.csv"
+# df.to_csv(f'/Users/cameronrichardson/Documents/GitHub/titratorRemoteControl/Python/{filename}', index=False)
+# print(filename, "has been saved to the current working directory.")

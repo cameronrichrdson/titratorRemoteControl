@@ -3,7 +3,7 @@ import pandas as pd
 
 # Set the working directory
 
-dir = os.chdir('/Users/cameronrichardson/Documents/School/Thesis/Code/data')
+dir = os.chdir('/Users/cameronrichardson/Documents/Thesis/Code/data/2x_Mg')
 
 files_in_dir = os.listdir()
 print("Files in directory:", files_in_dir, "\n")
@@ -67,5 +67,3 @@ while True:
             break
 
 print(f"Data entry complete! The titration data is saved in {file_name}.")
-
-
