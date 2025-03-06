@@ -3,7 +3,7 @@ import pandas as pd
 
 # Set the working directory
 
-dir = os.chdir('/Users/cameronrichardson/Documents/School/Thesis/Code/data')
+dir = os.chdir('C:\Richardson')
 
 files_in_dir = os.listdir()
 print("Files in directory:", files_in_dir, "\n")
