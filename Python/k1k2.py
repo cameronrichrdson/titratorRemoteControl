@@ -3,7 +3,7 @@ import pandas as pd
 
 # Given values
 T_celsius = 20
-S = 35
+S = 34.941
 T_kelvin = T_celsius + 273.15
 
 
@@ -78,11 +78,11 @@ combined_pK2_DM = (1377.3/T_kelvin)+4.824-0.0185*S+0.000122*(S**2)
 
 
 ####################################################################################millero roy 1997
-a_millero = -60.2409
-b_millero = -9345.17
-c_millero = 18.7533
+# a_millero = -60.2409
+# b_millero = -9345.17
+# c_millero = 18.7533
  
-k_millero197 = np.exp(a_millero + b_millero/T_kelvin + c_millero*np.log(T_kelvin))
+# k_millero197 = np.exp(a_millero + b_millero/T_kelvin + c_millero*np.log(T_kelvin))
 
 
 print("~~~~~~~~~~~~~~~~~~~~~~~~~", "\n", "T (C) = ", T_celsius, "\n", "S (g/kg)= ", S, "\n","~~~~~~~~~~~~~~~~~~~~~~~~~")
@@ -100,7 +100,7 @@ print(" Millero 1995, Roy 1993 and GP 1989 combined (asw):")
 print(" pK1 = ", combined_pK1, "\n", "pK2 = ", combined_pK2, "\n")
 print(" Dickson and Millero 1989, Hansson and Mehrbach combined refit on pH(SWS):")
 print(" pK1 = ", combined_pK1_DM, "\n", "pK2 = ", combined_pK2_DM, "\n")
-print(" Millero 1997:", k_millero197)
+# print(" Millero 1997:", k_millero197)
 
 
 # data = {
