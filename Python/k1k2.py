@@ -2,8 +2,8 @@ import numpy as np
 import pandas as pd
 
 # Given values
-T_celsius = 20
-S = 34.941
+T_celsius = 10
+S = 34.943
 T_kelvin = T_celsius + 273.15
 
 
